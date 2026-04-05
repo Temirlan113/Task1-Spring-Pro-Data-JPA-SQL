@@ -1,0 +1,2 @@
+<link rel="stylesheet" th:href="@{/Bootstrap/css/bootstrap.min.css}">
+    <script th:src="@{/Bootstrap/js/bootstrap.bundle.min.js}"></script>
