@@ -5,11 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Controller
 public class FoodController {
 
     private final FoodService foodService;
+    private final ManufacturerRepository manufacturerRepository;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -20,6 +23,9 @@ public class FoodController {
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model) {
         Food food = foodService.getFoodById(id);
+
+        List<Manufacturer> manufacturerList = manufacturerRepository.findAll();
+        model.addAttribute("manufacturers", manufacturerList);
         model.addAttribute("food", food);
         return "addFood";
     }
@@ -28,6 +34,12 @@ public class FoodController {
     @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("food", new Food());
+
+        List<Manufacturer> manufacturerList = manufacturerRepository.findAll();
+
+        System.out.println("DEBUG: Найдено производителей в БД: " + manufacturerList.size());
+
+        model.addAttribute("manufacturers", manufacturerList);
         return "addFood";
     }
 

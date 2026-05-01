@@ -1,28 +1,23 @@
 package Spring_Pro.Task1_SpringDataJpa_PostgreSQL;
 
-
-
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Table(name = "foods")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Food {
+@Table(name = "manufacturers")
+public class Manufacturer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-    private int calories;
-    private int amount;
-    private int price;
+    private String code;
 
-    @ManyToOne
-    @JoinColumn(name = "manufacturers_id")
-    private Manufacturer manufacturer;
 }

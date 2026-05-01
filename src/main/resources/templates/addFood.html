@@ -12,6 +12,7 @@
         <h4>Add New Food</h4>
     </div>
     <div class="card-body">
+
         <form th:action="@{/save}" th:object="${food}" method="post">
 
             <input type="hidden" th:field="*{id}">
@@ -35,6 +36,20 @@
                 <label class="form-label">Price (KZT)</label>
                 <input type="number" th:field="*{price}" class="form-control" required>
             </div>
+
+            <div class="mb-3">
+                <label for="manufacturer" class="form-label">Manufacturer (Country)</label>
+                <select th:field="*{manufacturer}" id="manufacturer" class="form-select" required>
+                    <option value="" selected disabled>Select a country</option>
+                    <option th:each="m : ${manufacturers}"
+                            th:value="${m.id}"
+                            th:text="${m.name}">
+                    </option>
+                </select>
+            </div>
+
+
+
 
             <div class="d-flex justify-content-start gap-2">
                 <button type="submit" class="btn btn-primary">Add Food</button>
